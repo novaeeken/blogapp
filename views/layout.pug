@@ -1,0 +1,71 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        link(rel="stylesheet" href="/css/bootstrap.css") 
+        link(rel="stylesheet" href="/css/style.css")
+        link(rel="icon" type="image/png" href="#" sizes="32x32")
+    
+    body
+        header 
+            div.navbar-wrapper
+                nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
+                    div.container
+                        a.navbar-brand(href="/")
+                            strong Food Blog
+                        button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNavAltMarkup", aria-controls="navbarNavAltMarkup", aria-expanded="false", aria-label="Toggle navigation")
+                            span.navbar-toggler-icon
+                        div#navbarNavAltMarkup.collapse.navbar-collapse
+                            div.navbar-nav.ml-auto
+                                a.nav-item.nav-link.active(href="/") Home 
+                                    span.sr-only (current)
+                                a.nav-item.nav-link.nav-coloring(href="/newpost") New Post
+                                if user 
+                                    a.nav-item.nav-link.nav-coloring(href="/profile") Profile
+                                    a.btn.btn-info(role="button" href="/logout") Sign out
+                                else 
+                                    a.btn.btn-info(role="button" href="/login") Sign in
+        main 
+            
+            block content 
+
+        footer
+            div.footer-wrapper
+                div.container
+                    div.row
+                        div.col-sm-12.col-md-4.col-lg-4
+                            div
+                                h4 Hot tags
+                                br
+                                btn.btn.btn-light.hottags #glutenfree
+                                btn.btn.btn-light.hottags #healty
+                                btn.btn.btn-light.hottags #sugarfree
+                                btn.btn.btn-light.hottags #vegan
+                                btn.btn.btn-light.hottags #veggies
+                                btn.btn.btn-light.hottags #cheatmeal
+                                btn.btn.btn-light.hottags #glutenfree
+                                btn.btn.btn-light.hottags #healty
+                                btn.btn.btn-light.hottags #sugarfree
+                                btn.btn.btn-light.hottags #vegan
+                                btn.btn.btn-light.hottags #veggies
+                                btn.btn.btn-light.hottags #cheatmeal
+                        div.col-12.col-md-3.col-lg-4
+                            div
+                                h4 Important links
+                                br
+                                p Link one
+                                p Link two
+                                p Link three
+                        div.col-12.col-md-3.col-lg-4
+                            div
+                                h4 Other stuff you want
+                                br
+                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum animi ipsum laboriosam fugit quo voluptate reiciendis qui nihil sit vitae, vel architecto, sequi illum. Asperiores exercitationem amet sunt! Esse temporibus, assumenda voluptate pariatur, fugit inventore impedit.
+
+            div.footer-bottom
+                p © 2017 Copyright: Nova Eeken
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src="js/main.js")

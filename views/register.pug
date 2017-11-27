@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	div.container
+		br
+		br
+		br
+		br
+		p= message
+		div.row.justify-content-md-center
+			div.col-12.col-sm-12.col-md-8.col-lg-8
+				div.row
+					div.col-12.col-sm-12.col-md-12.col-lg-6.border
+						h3 Here comes an image
+					div.col-12.col-sm-12.col-md-12.col-lg-6.border
+						br
+						br
+						br
+						h1 Sign up
+						h3 Don't worry, this will take less then a minute
+						form(action="/register", method="post" autocomplete="off")
+							div.form-group
+								input.register(name="firstname" placeholder="Firstname" class="form-control" required)
+								input.register(name="email" placeholder="email address" class="form-control" required)
+								input.register(name="username" placeholder="username" class="form-control" required)
+								input.register(name="password" placeholder="password" type="password" class="form-control" required)
+								button.btnRegister.btn.btn-info(type="submit") Sign up
+				div.row
+					div
+						p Already a member? 
+							a(href="/login") Sign in.

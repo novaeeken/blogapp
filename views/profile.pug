@@ -1,0 +1,55 @@
+extends layout
+
+block content
+	div.container
+		br
+		br
+		br
+		br
+		div.row
+			div.col-12.col-lg-4
+				div.borders
+					img(src=user.profile)
+					p Change profile picture
+
+			div.col-12.col-sm-12.col-md-8.col-lg-8
+				div
+					h3 Welcome to your personal page, #{user.firstname}!
+					br
+					h4 About you
+					p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis sunt architecto ullam facilis sed nam itaque in voluptates possimus consequuntur, alias temporibus ex soluta saepe error quia praesentium illo facere molestiae ab perspiciatis! Rerum quos aliquam vel voluptatibus autem ipsa perferendis asperiores earum sit qui dicta adipisci quidem doloremque odit recusandae, esse reiciendis, deserunt accusamus culpa. Corporis, voluptatem. Ullam cupiditate modi dolorem, inventore quia est porro praesentium iure ut nemo nulla vero dolor corporis obcaecati tempore totam dolore exercitationem. Autem!
+					i Edit
+					br
+					br
+					br
+					button.btnRegister.btn.btn-secondary(type="link" href="/") Create new masterpiece
+			
+			div.col-12.col-md-12.col-lg-12
+				br
+				h3 Your posts
+				hr
+				div.row
+					div.col-12.col-sm-12.col-md-4.col-lg-4
+						img.imgPosts(src="images/350x220.png")
+						p.headertag HEALTH
+						h4.titlePosts <strong> Receipe: </strong> Gluten free pumkin soup
+						p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+						p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					div.col-12.col-sm-12.col-md-4.col-lg-4
+						img.imgPosts(src="images/350x220.png")
+						p.headertag HEALTH
+						h4.titlePosts <strong> Receipe: </strong> Gluten free pumkin soup
+						p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+						p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					div.col-12.col-sm-12.col-md-4.col-lg-4
+						img.imgPosts(src="images/350x220.png")
+						p.headertag HEALTH
+						h4.titlePosts <strong> Receipe: </strong> Gluten free pumkin soup
+						p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+						p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					//- form(action="/updateprofile", method="post" autocomplete="off")
+					//- 	div.form-group
+					//- 		textarea.register(name="about" placeholder="Tell us about yourself" class="form-control" rows="10" required)
+					//- 		button.btnRegister.btn.btn-info(type="submit") Save
+					//- 		button.btnRegister.btn.btn-secondary(type="submit") Cancel
+							

@@ -1,0 +1,172 @@
+#posts {
+	background-color: #e5e5e5;
+}
+
+#popular {
+	background-color: #adadad;
+}
+
+#tags {
+	background-color: #d3d3d3;
+}
+
+#yo {
+	background-color: #bfbfbf;
+}
+
+#bro {
+	background-color: #afafaf;
+}
+
+/*NAV & FOOTER*/
+
+.footer-wrapper {
+	background-color: #262626;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 4%;
+}
+
+.footer-bottom {
+	text-align: center;
+	padding: 10px;
+	background-color: #161616;
+	color: #969696;
+}
+
+/*FORMATTING ON HOME PAGE*/
+
+.imgLatest {
+	width: 100%;
+	border-radius: 15px;
+}
+
+.imgPosts {
+	width: 100%;
+	margin-top: 15px;
+	border-radius: 15px;
+}
+
+.imgPopular {
+	float: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.imgUser {
+	float: left;
+	margin-right: 15px;
+	border-radius: 50px;
+}
+
+.smallinfo {
+	font-size: 0.8em;
+	line-height: 0.8em;
+}
+
+.hottags {
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+/*FORMATTING ON REGISTER PAGE */
+
+.register {
+	margin-bottom: 10px;
+}
+
+.btnRegister {
+	width: 100%;
+}
+
+/*FORMATTING ON SPECIFIC POST PAGE */
+
+.breadcrum {
+	text-align: right;
+	padding-top: 10px;
+	background-color: #e5e5e5;
+}
+
+.imgRelatedPosts {
+	width: 100%;
+	border-radius: 15px;
+}
+
+.smallDate {
+	font-size: 0.8em;
+	line-height: 0.1em;
+	text-align: right;
+}
+
+#commentbox {
+	background-color: #e5e5e5;
+}
+
+/*SUBSCRIBE OVER IMAGE */
+
+.subscribeContainer {
+	position: relative;
+    text-align: left;
+    color: white;
+}
+
+.imgSubscribe {
+	border-radius: 15px;
+	width: 100%;
+}
+
+.textSubscribe {
+	padding-right: 15px;
+	position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+.btnSubscribe {
+	margin-top: 10px;
+	width: 100%;
+}
+
+
+
+/*DIFFERENCE BETWEEN LARGE AND NORMAL SCREENS */
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.container{
+        max-width: 720px;
+    }
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+	.container{
+        max-width: 970px;
+    }
+
+	.tall {
+		height: 90vh;
+	}
+
+	#subscribe-btn {
+		margin-left: 10px;
+	}
+
+	.sticky {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 50%;
+	}
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1170px;
+    }
+}
+
+
