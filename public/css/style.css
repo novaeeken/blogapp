@@ -81,6 +81,25 @@
 	width: 100%;
 }
 
+/*FORMATTING ON PROFILE PAGE */
+
+.left-column {
+	text-align: center;
+	align-items: center;
+}
+
+/*profile picture image*/
+.left-column > img {
+	width: 80%;
+	border: 1px solid grey;
+	border-radius: 50%;
+}
+
+.form-group input {
+	margin-top: 5px;
+}
+
+
 /*FORMATTING ON SPECIFIC POST PAGE */
 
 .breadcrum {
@@ -102,6 +121,21 @@
 
 #commentbox {
 	background-color: #e5e5e5;
+	border-radius: 15px;
+}
+
+#commentwrapper {
+	width: 95%;
+	margin: 0 auto;
+}
+
+.imgAboutAuthor {
+	border-radius: 15px;
+	width: 100%;
+}
+
+.imgUser {
+	width: 70px;
 }
 
 /*SUBSCRIBE OVER IMAGE */
@@ -129,6 +163,16 @@
 	width: 100%;
 }
 
+/*NEW POST PAGE*/
+
+.newpostButtons {
+	text-align: right;
+	align-items: right;
+}
+
+#newpostDismiss {
+	margin-left: 1%;
+}
 
 
 /*DIFFERENCE BETWEEN LARGE AND NORMAL SCREENS */

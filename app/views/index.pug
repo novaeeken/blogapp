@@ -1,0 +1,131 @@
+extends layout
+
+block content
+	div.container
+		br
+		br
+		br
+		br
+		p= message
+		div.row
+			div#posts.col-12.col-md-12.col-lg-8
+				div.border
+					h3 Latest posts
+					hr
+					a(href="/post/" + latest.id)
+						img.imgLatest(src="images/posts/" + latest.image)
+					p.headertag HEALTH
+					if latest.type !== "Nothing in particular"
+						a(href="/post/" + latest.id)
+							h4.titlePosts <strong> #{latest.type}: </strong> #{latest.title}
+					else 
+						a(href="/post/" + latest.id)
+							h4.titlePosts #{latest.title}
+					p.textPosts #{latest.content}
+					p.smallinfo by #{latest.user.username}, #{latest.createdAt} | 0 comments | x min read
+				
+			div.col-12.col-lg-4
+				div.row
+					div#popular.col-sm-12.col-md-6.col-lg-12
+						h4 Popular posts
+						img.imgPopular(src="images/70x70.png")
+						p <strong> Receipe: </strong> This is a salmon pie from heaven
+						p.smallinfo 0 comments | x min read
+						hr
+						img.imgPopular(src="images/70x70.png")
+						p <strong> Receipe: </strong> This is a salmon pie from heaven
+						p.smallinfo 0 comments | x min read
+						hr
+						img.imgPopular(src="images/70x70.png")
+						p <strong> Receipe: </strong> This is a salmon pie from heaven
+						p.smallinfo 0 comments | x min read
+						br
+					div#tags.col-sm-12.col-md-6.col-lg-12
+						div
+							h4 Hot tags
+							br
+							btn.btn.btn-light.hottags #glutenfree
+							btn.btn.btn-light.hottags #healty
+							btn.btn.btn-light.hottags #sugarfree
+							btn.btn.btn-light.hottags #vegan
+							btn.btn.btn-light.hottags #veggies
+							btn.btn.btn-light.hottags #cheatmeal
+							btn.btn.btn-light.hottags #glutenfree
+							btn.btn.btn-light.hottags #healty
+							btn.btn.btn-light.hottags #sugarfree
+							btn.btn.btn-light.hottags #vegan
+							btn.btn.btn-light.hottags #veggies
+							btn.btn.btn-light.hottags #cheatmeal
+							br
+							br
+			div.col-12.col-lg-8
+				br
+				div.row
+					each post in posts
+						div.col-sm-12.col-md-6.col-lg-6
+							div
+								a(href="/post/" + post.id)
+									img.imgLatest(src="images/posts/" + post.image)
+								p.headertag HEALTH
+								if post.type !== "Nothing in particular"
+									a(href="/post/" + post.id)
+										h4.titlePosts <strong> #{post.type}: </strong> #{post.title}
+								else 
+									a(href="/post/" + post.id)
+										h4.titlePosts #{post.title}
+								p.textPosts #{post.content}
+								p.smallinfo by #{post.user.username}, #{post.createdAt} | 0 comments | x min read
+
+								//- img.imgPosts(src="images/350x220.png")
+								//- p.headertag HEALTH
+								//- 	h4.titlePosts 
+								//- 		a(href="#") <strong> Receipe: </strong> Gluten free pumkin soup
+								//- p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+								//- p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					
+					//- div#bro.col-sm-12.col-md-6.col-lg-6
+					//- 	div
+					//- 		img.imgPosts(src="images/350x220.png")
+					//- 		p.headertag HACK
+					//- 		h4.titlePosts <strong> Tips 'n Tricks: </strong> How you really cut an onion
+					//- 		p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+					//- 		p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					//- div#yo.col-sm-12.col-md-6.col-lg-6
+					//- 	div
+					//- 		img.imgPosts(src="images/350x220.png")
+					//- 		p.headertag CHEAT MEAL
+					//- 		h4.titlePosts <strong> Receipe: </strong> The best brownies ever  
+					//- 		p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+					//- 		p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					//- div#bro.col-sm-12.col-md-6.col-lg-6
+					//- 	div
+					//- 		img.imgPosts(src="images/350x220.png")
+					//- 		p.headertag HEALTH, VEGAN
+					//- 		h4.titlePosts A list of egg-substitutes for different occasions
+					//- 		p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+					//- 		p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					//- div#yo.col-sm-12.col-md-6.col-lg-6
+					//- 	div
+					//- 		img.imgPosts(src="images/350x220.png")
+					//- 		p.headertag CHEAT MEAL
+					//- 		h4.titlePosts <strong> Receipe: </strong> The best brownies ever  
+					//- 		p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+					//- 		p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+					//- div#bro.col-sm-12.col-md-6.col-lg-6
+					//- 	div
+					//- 		img.imgPosts(src="images/350x220.png")
+					//- 		p.headertag HEALTH, VEGAN
+					//- 		h4.titlePosts A list of egg-substitutes for different occasions
+					//- 		p.textPosts Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui quos corporis quisquam officiis sint explicabo, pariatur eveniet, quibusdam exercitationem enim quia, repudiandae laudantium reiciendis dolore quaerat asperiores accusamus!
+					//- 		p.smallinfo by username, 27-10-2017 | 0 comments | x min read
+			
+			div.col-sm-12.col-md-12.col-lg-4.tall.sticky
+				h4 Subscribe
+				p Subscribe now so you never have to miss any of these amazing receipes!
+				form.form-inline(action="/subscribe", method="post" autocomplete="off")
+					div.form-group
+						input.subscribe(type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter emailaddress")
+						button#subscribe-btn.btn.btn-info(type="submit") Subscribe
+				small(id="emailHelp" class="form-text text-muted") We'll never share your email with anyone else.
+
+
