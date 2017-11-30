@@ -10,7 +10,7 @@ block content
 			div.col-12.col-lg-4
 				div.left-column
 					if userprofile.profile
-						img#profilePic(src='/images/users/' + userprofile.profile)
+						img#profilePic(src=userprofile.profile)
 					else 
 						img#profilePic(src='/images/300x300.png')
 					br
@@ -18,7 +18,7 @@ block content
 					br
 					a(href="#")#changeImgLink Change profile picture
 					div.changeProfileImg
-						form(ref='uploadForm' action='updateProfilePic' method='post' enctype='multipart/form-data')
+						form(ref='uploadForm' action='/users/updateProfilePic' method='post' enctype='multipart/form-data')
 							div.form-group
 								input(type='file' name='profilePic' class="form-control")
 								input.btn.btn-info(type='submit' value='Upload!' class="form-control")
@@ -35,7 +35,7 @@ block content
 							p= userprofile.about
 							a(href="#" id="changeProfileAbout") Edit
 						div.changeProfileAbout
-							form(action="/updateprofile", method="post" autocomplete="off")
+							form(action="/users/updateprofile", method="post" autocomplete="off")
 								div.form-group
 									textarea.register(name="about" placeholder="e.g. I'm a 24 year old home baker from Seattle. I have a passion for cookies and love to bake all day, but in real life I'm an accountant." class="form-control" rows="5" required)
 									button.btn.btn-info(type="submit") Save
@@ -45,12 +45,11 @@ block content
 							p This section will be featured next to all the blogs you post, but it looks like you haven't told us anything about yourself yet!
 							a(href="#" id="addProfileAbout") Edit
 						div.addProfileAbout
-							form(action="/updateprofile", method="post" autocomplete="off")
+							form(action="/users/updateprofile", method="post" autocomplete="off")
 								div.form-group
 									textarea.register(name="about" class="form-control" rows="5" required)
 									button.btn.btn-info(type="submit") Save
 									button#addCancelBtn.btn.btn-secondary Cancel
-					
 					br
 					br
 					br
@@ -64,25 +63,20 @@ block content
 					div.row
 						each post in posts
 							div.col-12.col-sm-12.col-md-4.col-lg-4
-								a(href="/post/" + post.id)
-									img.imgPosts(src="/images/posts/" + post.image)
+								a(href="/posts/post/" + post.id)
+									img.imgPosts(src=post.image)
 								p.headertag HEALTH
-								a(href="/post/" + post.id)
+								a(href="/posts/post/" + post.id)
 									if post.type !== "Nothing in particular"
 										h4.titlePosts <strong> #{post.type}: </strong> #{post.title}
 									else 
 										h4.titlePosts #{post.title}
 								p.textPosts #{post.content}
 								p.smallinfo by you, #{post.createdAt} | 0 comments | x min read
-
 				else
 					p You haven't posted anything yet.
-					a.btn.btn-info(role="button" href="/newpost") Create your first masterpiece
+					a.btn.btn-info(role="button" href="/posts/newpost") Create your first masterpiece
 						
-						
-
-					
-	
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
 	script.
 		$('.changeProfileImg').toggle();

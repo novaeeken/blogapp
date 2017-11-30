@@ -17,7 +17,7 @@ block content
 						br
 						h1 Sign in
 						h3 Welcome back, captain.
-						form(action="/login", method="post" autocomplete="off")
+						form(action="/users/login", method="post" autocomplete="off")
 							div.form-group
 								input.register(name="email" placeholder="email address" class="form-control" required)
 								p= message
@@ -26,7 +26,7 @@ block content
 				div.row
 					div
 						p Not a member yet?
-							a(href="/register")  Sign up.
+							a(href="/users/register")  Sign up.
 
 
 

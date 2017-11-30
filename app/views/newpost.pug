@@ -9,27 +9,33 @@ block content
 		div.row
 			div.col-12.col-md-12.col-lg-12
 				br
-				h3 New post
-				hr
-				div.row
-					div.col-12.col-sm-12
-						form(ref='uploadForm' action='/newpost' method='post' enctype='multipart/form-data')
-							div.form-group
-								label(for='typeOfPost') What kind of post is this?
-								select#typeOfPost.form-control(name='type')
-									option Nothing in particular
-									option Recipe
-									option Tips&amp;Tricks
-									option Informative
-									option 5 Easy ways
-							div.form-group
-								input(name="title" class="form-control" placeholder="Title" required)
-								br
-								textarea(name="content" placeholder="Tell us about the good stuff!" class="form-control" rows="15" required)
-							div.form-group
-								label(for='uploadImage') Make this post even better with an image
-									input#uploadImage(type='file' name='blogPic' class="form-control")
-							hr
-							div.newpostButtons
-								button#newpostSubmit.btn.btn-info(type="submit") Upload! 
-								button#newpostDismiss.btn.btn-secondary(role="button" href="/") Cancel
+				if user
+					h3 New post
+					hr
+					div.row
+						div.col-12.col-sm-12
+							form(ref='uploadForm' action='/posts/newpost' method='post' enctype='multipart/form-data')
+								div.form-group
+									label(for='typeOfPost') What kind of post is this?
+									select#typeOfPost.form-control(name='type')
+										option Nothing in particular
+										option Recipe
+										option Tips&amp;Tricks
+										option Informative
+										option 5 Easy ways
+								div.form-group
+									input(name="title" class="form-control" placeholder="Title" required)
+									br
+									textarea(name="content" placeholder="Tell us about the good stuff!" class="form-control" rows="15" required)
+								div.form-group
+									label(for='uploadImage') Make this post even better with an image
+										input#uploadImage(type='file' name='blogPic' class="form-control")
+								hr
+								div.newpostButtons
+									button#newpostSubmit.btn.btn-info(type="submit") Upload! 
+									button#newpostDismiss.btn.btn-secondary(role="button" href="/") Cancel
+				else
+					h5 You need to be logged in to make contributions. Please
+						a(href="/users/login")  Log in
+						|  or
+						a(href="/users/register")  Create an account. 

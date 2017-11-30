@@ -20,12 +20,12 @@ html
                             div.navbar-nav.ml-auto
                                 a.nav-item.nav-link.active(href="/") Home 
                                     span.sr-only (current)
-                                a.nav-item.nav-link.nav-coloring(href="/newpost") New Post
+                                a.nav-item.nav-link.nav-coloring(href="/posts/newpost") New Post
                                 if user 
-                                    a.nav-item.nav-link.nav-coloring(href="/profile") Profile
-                                    a.btn.btn-info(role="button" href="/logout") Sign out
-                                else 
-                                    a.btn.btn-info(role="button" href="/login") Sign in
+                                    a.nav-item.nav-link.nav-coloring(href="/users/profile") Profile
+                                    a.btn.btn-info(role="button" href="/users/logout") Sign out
+                                else
+                                    a.btn.btn-info(role="button" href="/users/login") Sign in
         main 
             
             block content 

@@ -15,7 +15,7 @@ block content
 				div
 					h4 Blogpost
 					hr
-					img.imgLatest(src="/images/posts/" + post.image)
+					img.imgLatest(src=post.image)
 					p.headertag HEALTH
 					if post.type !== "Nothing in particular"
 						h2.titlePosts <strong> #{post.type}: </strong> #{post.title}
@@ -31,7 +31,7 @@ block content
 					div.col-sm-12.col-md-6.col-lg-12
 						h4 About this author
 						hr
-						img.imgAboutAuthor(src='/images/users/' + author.id + ".png")
+						img.imgAboutAuthor(src=author.profile)
 						br
 						br
 						p= author.about
@@ -69,7 +69,7 @@ block content
 				if comments.length > 0
 					each comment in comments
 						div
-							img.imgUser(src="/images/users/" + comment.user.profile)
+							img.imgUser(src=comment.user.profile)
 							h5= comment.user.username
 							p= comment.content
 							p.smallDate Posted #{comment.posted}
@@ -83,7 +83,7 @@ block content
 						br
 						h4 Leave a reply
 						if session !== null
-							form(action=`/newcomment/${post.id}` method="post" autocomplete="off")
+							form(action=`comments/newcomment/${post.id}` method="post" autocomplete="off")
 								div.form-group
 								textarea(name="comment" class="form-control" placeholder="What are your thoughs on this post?" rows="5")
 								br
