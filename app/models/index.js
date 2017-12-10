@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize'); 
 
-const sequelize = new Sequelize('blogapp', process.env.POSTGRES_USER, null, {
+const sequelize = new Sequelize('testdatabase', process.env.POSTGRES_USER, null, {
 	host: 'localhost',
 	dialect: 'postgres',
 	storage: './session.postgres',
@@ -12,6 +12,7 @@ const sequelize = new Sequelize('blogapp', process.env.POSTGRES_USER, null, {
 const User = sequelize.import('./users');
 const Blogpost = sequelize.import('./posts');
 const Comment = sequelize.import('./comments');
+const Subscription = sequelize.import('./subscriptions');
 const Prepopulate = sequelize.import('./prepopulate');
 
 //----------------------------------------------  TABLE ASSOCIATIONS  ----------------------------------------------
@@ -19,9 +20,10 @@ const Prepopulate = sequelize.import('./prepopulate');
 User.hasMany(Blogpost);
 Blogpost.belongsTo(User);
 
-User.hasMany(Comment);
-Blogpost.hasMany(Comment);
 Comment.belongsTo(User);
+
+Blogpost.hasMany(Comment);
+User.hasMany(Comment);
 
 
 //--------------------------------------------------  EXPORTS  ---------------------------------------------------
@@ -34,3 +36,4 @@ exports.Sequelize = Sequelize;
 exports.User = User;
 exports.Blogpost = Blogpost;
 exports.Comment = Comment;
+exports.Subscription = Subscription;

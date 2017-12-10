@@ -12,16 +12,11 @@ router.post('/newcomment/:id', function(req, res){
 
 	newComment = {
 		content: req.body.comment,
-		posted: Date.now(),
-		userId: req.session.user.id,
-		blogpostId: preq.params.id 
+		posted: Date.now()
 	}
-
-	model.User.findById(req.session.user.id).then(user => {
-		return user.model.Comment.createComment(newComment); 
-	})
-	.then( comment => {
-		res.redirect(`/post/${preq.params.id}`);
+		
+	model.Comment.createComment(req.session.user.id, req.params.id, newComment).then( () => {
+		res.redirect(`/posts/post/${req.params.id}`);	
 	})
 	.catch(e => console.error(e.stack));
 })

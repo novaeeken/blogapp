@@ -17,12 +17,17 @@ module.exports = ( sequelize, DataTypes ) => {
 	);
 
 	Blogpost.allPosts = () => {
-        return Blogpost.findAll({
-        	include: [{
-				model: model.User
-			}],
-			order: [['id', 'DESC']]
-        })
+		return Promise.all([
+	        Blogpost.findAll({
+	        	include: [{
+					model: model.User
+				}],
+				order: [['id', 'DESC']]
+	        }),
+	        Blogpost.findAll({
+	        	order: [['likes', 'DESC']]
+	        })
+        ])
     };
 
     Blogpost.onePost = ( blogId ) => {
@@ -46,7 +51,7 @@ module.exports = ( sequelize, DataTypes ) => {
         ]);
     };
 
-    Blogpost.createPost = ( contents ) => {
+    Blogpost.createPost = ( user, contents ) => {
     	return Blogpost.create({
     		type: contents.type,
 			title: contents.title,
@@ -54,7 +59,8 @@ module.exports = ( sequelize, DataTypes ) => {
 			readlength: contents.readlength,
 			posted: contents.posted,
 			likes: contents.likes,
-			image: contents.image
+			image: contents.image,
+			userId: user
     	});
     }
 
@@ -64,6 +70,10 @@ module.exports = ( sequelize, DataTypes ) => {
 		}, {
 			where: {id: blogId}
 		})
+    }
+
+    Blogpost.addLike = ( blogId ) => {
+    		Blogpost.update({ likes: sequelize.literal('likes + 1') }, { where: { id: blogId } });
     }
 
 	//return everything that has been done to this model

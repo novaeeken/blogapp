@@ -34,23 +34,12 @@ router.get('/profile', function(req, res){
 	.catch(e => console.error(e.stack));
 });
 
-//GET "ABOUT" PROFILE INFO (AJAX) -------------------------------
-// router.get('/about', function(req, res) {
-
-// 	model.User.finmodelyId(req.query.userID)
-// 	.then( user => {
-// 		res.send({ about: user.about });
-// 	})
-// 	.catch(e => console.error(e.stack));
-// })
-
 
 // POST ACTION "UPDATE PROFILE" ----------------------------------
 router.post('/updateprofile', function(req, res){
 	
 	model.User.updateAbout(req.session.user.id, req.body.about)
 	.then( (user) => {
-		console.log('User info update-------->'+ typeof(user));
 		res.redirect('/users/profile');
 	})
 	.catch( err => console.error(err)); 
@@ -90,7 +79,7 @@ router.post('/login', function(req, res){
 					req.session.user = user;
 					res.redirect('profile');
 				} else {
-					res.redirect('/users/login?message=' + encodeURIComponent('Password is incorrect', {user: req.session.user})); 
+					res.redirect('/users/login?message=' + encodeURIComponent('Password is incorrect')); 
 				}
 			})
 		} else {
@@ -110,7 +99,7 @@ router.post('/register', function(req, res){
 		email: req.body.email,
 		password: req.body.password,
 		about: '',
-		profile: 'images/users/example.png'
+		profile: '/images/users/example.png'
 	};
 
 	//check wether user already exists

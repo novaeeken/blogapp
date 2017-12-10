@@ -6,8 +6,9 @@ module.exports = ( sequelize, DataTypes ) => {
 	// definition of the User model
 	const User = sequelize.define('users', {
 		firstname: DataTypes.STRING,
-		username: {type: DataTypes.STRING, unique: true},
-		email: {type: DataTypes.STRING, unique: true},
+		// unique: true
+		username: {type: DataTypes.STRING},
+		email: {type: DataTypes.STRING},
 		password: DataTypes.STRING,
 		about: DataTypes.TEXT, 
 		profile: DataTypes.STRING

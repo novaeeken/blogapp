@@ -3,9 +3,10 @@ html
     head
         meta(charset="utf-8")
         meta(name="viewport", content="width=device-width, initial-scale=1")
-        link(rel="stylesheet" href="/css/bootstrap.css") 
+        link(rel="stylesheet" href="/css/bootstrap.css")
+        link(rel="stylesheet" href="/css/fonts/fonts.css")
         link(rel="stylesheet" href="/css/style.css")
-        link(rel="icon" type="image/png" href="#" sizes="32x32")
+        link(rel="icon" type="image/png" href="/images/brand-icon.png" sizes="32x32")
     
     body
         header 
@@ -13,19 +14,19 @@ html
                 nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
                     div.container
                         a.navbar-brand(href="/")
-                            strong Food Blog
+                            img(src="/images/brand-logo.png" width="107" height="30" alt="logo")
                         button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNavAltMarkup", aria-controls="navbarNavAltMarkup", aria-expanded="false", aria-label="Toggle navigation")
                             span.navbar-toggler-icon
                         div#navbarNavAltMarkup.collapse.navbar-collapse
                             div.navbar-nav.ml-auto
-                                a.nav-item.nav-link.active(href="/") Home 
+                                a.nav-item.nav-link.active(href="/") HOME
                                     span.sr-only (current)
-                                a.nav-item.nav-link.nav-coloring(href="/posts/newpost") New Post
+                                a.nav-item.nav-link.nav-coloring(href="/posts/newpost") NEW POST
                                 if user 
-                                    a.nav-item.nav-link.nav-coloring(href="/users/profile") Profile
-                                    a.btn.btn-info(role="button" href="/users/logout") Sign out
+                                    a.nav-item.nav-link.nav-coloring(href="/users/profile") PROFILE
+                                    a.btn.btn-info(role="button" href="/users/logout") SIGN OUT
                                 else
-                                    a.btn.btn-info(role="button" href="/users/login") Sign in
+                                    a.btn.btn-info(role="button" href="/users/login") SIGN IN
         main 
             
             block content 
@@ -36,7 +37,7 @@ html
                     div.row
                         div.col-sm-12.col-md-4.col-lg-4
                             div
-                                h4 Hot tags
+                                h4.footerFont Hot tags 
                                 br
                                 btn.btn.btn-light.hottags #glutenfree
                                 btn.btn.btn-light.hottags #healty
@@ -52,20 +53,21 @@ html
                                 btn.btn.btn-light.hottags #cheatmeal
                         div.col-12.col-md-3.col-lg-4
                             div
-                                h4 Important links
+                                h4.footerFont Important links
                                 br
-                                p Link one
-                                p Link two
-                                p Link three
+                                p.footerFont Link one
+                                p.footerFont Link two
+                                p.footerFont Link three
                         div.col-12.col-md-3.col-lg-4
                             div
-                                h4 Other stuff you want
+                                h4.footerFont Other stuff you want
                                 br
-                                p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum animi ipsum laboriosam fugit quo voluptate reiciendis qui nihil sit vitae, vel architecto, sequi illum. Asperiores exercitationem amet sunt! Esse temporibus, assumenda voluptate pariatur, fugit inventore impedit.
+                                p.footerFont Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum animi ipsum laboriosam fugit quo voluptate reiciendis qui nihil sit vitae, vel architecto, sequi illum. Asperiores exercitationem amet sunt! Esse temporibus, assumenda voluptate pariatur, fugit inventore impedit.
 
             div.footer-bottom
                 p © 2017 Copyright: Nova Eeken
 
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='/js/bootstrap.js')
     script(src="/js/main.js")

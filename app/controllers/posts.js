@@ -26,7 +26,8 @@ router.get('/post/:id', function(req, res){
 			post: result[0].dataValues, 
 			author: result[0].user.dataValues, 
 			comments: comments, 
-			total: comments.length
+			total: comments.length,
+			message: req.query.message
 		});
 	})
 	.catch(e => console.error(e.stack));
@@ -49,9 +50,7 @@ router.post('/newpost', function(req, res){
 		image: 'Not assigned yet'
 	};
 
-	model.User.findById(req.session.user.id).then( user => {
-		return user.model.Blogpost.createPost(newPost);
-	})
+	model.Blogpost.createPost(req.session.user.id, newPost)
 	.then( blogpost => {
 		image.mv(`public/images/posts/${blogpost.id}.png`); 
 		return blogpost.id;
@@ -62,5 +61,12 @@ router.post('/newpost', function(req, res){
 	})
 	.catch(e => console.error(e.stack));
 });
+
+router.post('/like/:id', function(req, res) {
+	model.Blogpost.addLike(req.params.id);
+	res.redirect(`/posts/post/${req.params.id}?message=` + encodeURIComponent('true'));
+	// this is not working yet
+	console.log('BEEN HERE');
+})
 
 module.exports = router;

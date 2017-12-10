@@ -1,15 +1,21 @@
 extends layout
 
 block content
+	div.container-fluid
+		br
+		br
+		br
+		if subscribe == "true"
+			div.alert.alert-success.alert-dismissible.fade.show(role='alert')
+				strong Holy guacamole,
+				|  you're part of the crew now! Thanks for subscribing, we'll make sure to keep you up to date! 
+				button.close(type='button' data-dismiss='alert' aria-label='Close')
+					span(aria-hidden='true') ×
 	div.container
-		br
-		br
-		br
-		br
 		p= message
 		div.row
-			div#posts.col-12.col-md-12.col-lg-8
-				div.border
+			div.col-12.col-md-12.col-lg-8
+				div
 					h3 Latest posts
 					hr
 					a(href="/posts/post/" + latest.id)
@@ -17,32 +23,42 @@ block content
 					p.headertag HEALTH
 					if latest.type !== "Nothing in particular"
 						a(href="/posts/post/" + latest.id)
-							h4.titlePosts <strong> #{latest.type}: </strong> #{latest.title}
+							h2.titlePostType #{latest.type}: <span class="titlePostTitle"> #{latest.title} </span> 
 					else 
 						a(href="/post/" + latest.id)
-							h4.titlePosts #{latest.title}
+							h2.titlePostsTitle #{latest.title}
 					p.textPosts #{latest.content}
-					p.smallinfo by #{latest.user.username}, #{latest.createdAt} | 0 comments | x min read
+					p.smallinfo by #{latest.user.username}, posted #{latest.posted} |  
+						img.icons(src="/images/heart.png") 
+						|  #{latest.likes} likes | 
+						img.icons(src="/images/time.png") 
+						|  #{latest.readlength} min read
 				
 			div.col-12.col-lg-4
 				div.row
-					div#popular.col-sm-12.col-md-6.col-lg-12
-						h4 Popular posts
-						img.imgPopular(src="images/70x70.png")
-						p <strong> Receipe: </strong> This is a salmon pie from heaven
-						p.smallinfo 0 comments | x min read
-						hr
-						img.imgPopular(src="images/70x70.png")
-						p <strong> Receipe: </strong> This is a salmon pie from heaven
-						p.smallinfo 0 comments | x min read
-						hr
-						img.imgPopular(src="images/70x70.png")
-						p <strong> Receipe: </strong> This is a salmon pie from heaven
-						p.smallinfo 0 comments | x min read
+					div.col-sm-12.col-md-6.col-lg-12
+						h3 Popular posts
+						each popularpost in popular
+							hr
+							a(href="/posts/post/" + popularpost.id)
+								img.imgPopular(src=popularpost.image)
+							if popularpost.type !== "Nothing in particular"
+								a(href="/posts/post/" + popularpost.id)
+									h6.titlePostType #{popularpost.type}: <span class="titlePostTitle"> #{popularpost.title} </span>
+							else 
+								a(href="/posts/post/" + popularpost.id)
+									h6.titlePostTitle #{popularpost.title}
+							p.smallinfo 
+								img.icons(src="/images/heart.png")   
+								|   #{popularpost.likes}  likes | 
+								img.icons(src="/images/time.png")  
+								|   #{popularpost.readlength}  min read
 						br
-					div#tags.col-sm-12.col-md-6.col-lg-12
+						br
+					div.col-sm-12.col-md-6.col-lg-12
 						div
-							h4 Hot tags
+							h3 Hot tags
+							hr
 							br
 							btn.btn.btn-light.hottags #glutenfree
 							btn.btn.btn-light.hottags #healty
@@ -69,20 +85,25 @@ block content
 								p.headertag HEALTH
 								if post.type !== "Nothing in particular"
 									a(href="/posts/post/" + post.id)
-										h4.titlePosts <strong> #{post.type}: </strong> #{post.title}
-								else 
+										h4.titlePostType #{post.type}: <span class="titlePostTitle"> #{post.title} </span> 
+								else
 									a(href="/posts/post/" + post.id)
-										h4.titlePosts #{post.title}
+										h4.titlePostsTitle #{post.title}
 								p.textPosts #{post.content}
-								p.smallinfo by #{post.user.username}, #{post.createdAt} | 0 comments | x min read
+								p.smallinfo by #{post.user.username}, #{post.posted} | 
+									img.icons(src="/images/heart.png")   
+									|   #{post.likes}  likes | 
+									img.icons(src="/images/time.png")  
+									|   #{post.readlength}  min read
 			
 			div.col-sm-12.col-md-12.col-lg-4.tall.sticky
 				h4 Subscribe
 				p Subscribe now so you never have to miss any of these amazing receipes!
-				form.form-inline(action="/subscribe", method="post" autocomplete="off")
+				form.form-inline(action="/subscriptions/subscribe", method="post" autocomplete="off")
 					div.form-group
-						input.subscribe(type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter emailaddress")
-						button#subscribe-btn.btn.btn-info(type="submit") Subscribe
+						input.subscribe(name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter emailaddress")
+						button#subscribe-btn.btn.btn-info(type="submit" style="padding-left:28px; padding-right: 28px; margin-top: 5px;") Subscribe
 				small(id="emailHelp" class="form-text text-muted") We'll never share your email with anyone else.
+
 
 

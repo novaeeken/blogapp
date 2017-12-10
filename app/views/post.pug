@@ -1,25 +1,43 @@
 extends layout
 
 block content
+	div#yo.container-fluid
+		div.container 
+			div.row
+				div.col-12.col-sm-12.breadcrum-wrapper
+					br
+					br
+					br
+					h5.left Blogpost
+					p.breadcrum Health / #{post.type} / #{post.title}
+
 	div.container
+		if alert === 'true'
+			div#like-alert.alert.alert-success.alert-dismissible.fade.show(role='alert')
+					|  Your like has been submitted!
+					button.close(type='button' data-dismiss='alert' aria-label='Close')
+						span(aria-hidden='true') ×
 		br
 		br
-		br
-		br
-		div.row
-			div.col-12.col-sm-12.breadcrum
-				p here comes the breadcrum / posts / things / yo
-		
 		div.row
 			div.col-12.col-md-12.col-lg-8
 				div
-					h4 Blogpost
-					hr
-					img.imgLatest(src=post.image)
+					div.overlay-wrapper
+						img.img-with-overlay.imgLatest(src=post.image)
+						div.middle
+							div.like-container
+								h4.text LIKE
+								img.like-post(src="/images/like-heart.png" style="width:14%" name=post.id)
 					p.headertag HEALTH
 					if post.type !== "Nothing in particular"
-						h2.titlePosts <strong> #{post.type}: </strong> #{post.title}
-					p.smallinfo by #{author.username}, #{post.createdAt} | #{total} comments | x min read
+						h2.titlePostType #{post.type}: <span class="titlePostTitle"> #{post.title} </span> 
+					p.smallinfo by #{author.username}, #{post.posted}  |  
+						img.icons(src="/images/comments.png")
+						|  #{post.total}  comments | 
+						img.icons(src="/images/heart.png") 
+						|  #{post.likes}  likes |
+						img.icons(src="/images/time.png") 
+						|  #{post.readlength}  min read 
 					p.textPosts= post.content
 					div
 						btn.btn.btn-light.hottags #glutenfree
@@ -40,19 +58,20 @@ block content
 			div.col-12.col-lg-12
 				div
 					br
-					h4 Related posts (slider option here?)
+					h4 Related posts
+					hr
 		div.row
-			div#yo.col-sm-12.col-md-4.col-lg-4
+			div.col-sm-12.col-md-4.col-lg-4
 				img.imgRelatedPosts(src="/images/350x220.png")
 				p.headertag HEALTH, VEGAN
 				h4.titlePosts A list of egg-substitutes for different occasions
 				p.smallinfo by username, 27-10-2017 | 0 comments | x min read
-			div#yo.col-sm-12.col-md-4.col-lg-4
+			div.col-sm-12.col-md-4.col-lg-4
 				img.imgRelatedPosts(src="/images/350x220.png")
 				p.headertag HEALTH, VEGAN
 				h4.titlePosts A list of egg-substitutes for different occasions
 				p.smallinfo by username, 27-10-2017 | 0 comments | x min read
-			div#yo.col-sm-12.col-md-4.col-lg-4
+			div.col-sm-12.col-md-4.col-lg-4
 				img.imgRelatedPosts(src="/images/350x220.png")
 				p.headertag HEALTH, VEGAN
 				h4.titlePosts A list of egg-substitutes for different occasions
@@ -74,6 +93,7 @@ block content
 							p= comment.content
 							p.smallDate Posted #{comment.posted}
 							hr
+					br
 				else
 					div
 						p Awh, there a no comments on this post yet. Be the first one!
@@ -82,24 +102,41 @@ block content
 					div#commentwrapper
 						br
 						h4 Leave a reply
-						if session !== null
-							form(action=`comments/newcomment/${post.id}` method="post" autocomplete="off")
-								div.form-group
-								textarea(name="comment" class="form-control" placeholder="What are your thoughs on this post?" rows="5")
+						form(action=`/comments/newcomment/${post.id}` method="post" autocomplete="off")
+							div.form-group
+							textarea(name="comment" class="form-control" placeholder="What are your thoughs on this post?" rows="5")
+							if user
 								br
 								button.btn.btn-info(type="submit") Add comment
+							else
+								br
+								p 
+									strong Oops! You need to be logged in to post a comment. You can do so
+										a(href="/login")  here.
+								button.btn.btn-secondary(type="submit" disabled) Add comment	
 							br
-						else
-							p You need to be logged in to post a comment. You can do so
-								a(href="/login")  here.
+							br
 
 			div.col-sm-12.col-md-4.col-lg-4
 				div.subscribeContainer
-					img.imgSubscribe(src="/images/300x500.png")
+					img.imgSubscribe(src="/images/subscribe-image.jpg")
 					div.textSubscribe
 						h4 Subscribe
 						p Subscribe now so you never have to miss any of these amazing receipes!
-						form(action="/subscribe", method="post" autocomplete="off")
+						form(action="/subscriptions/subscribe", method="post" autocomplete="off")
 							div.form-group.formSubscribe
-								input.subscribe(type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter emailaddress")
+								input.subscribe(name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter emailaddress")
 								button.btnSubscribe.btn.btn-info(type="submit") Subscribe
+	
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+	script.
+
+		$( document ).ready(function() {
+			$('.like-post').click(function() {
+				let postId = $('.like-post').attr('name');
+			
+				$.post(`/posts/like/${postId}`, function(data) {
+					// do Nothing
+				})
+			});
+		});

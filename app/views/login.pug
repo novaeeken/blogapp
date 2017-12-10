@@ -6,26 +6,27 @@ block content
 		br
 		br
 		br
-		div.row.justify-content-md-center
+		div.row.justify-content-md-center.no-gutters
 			div.col-12.col-sm-12.col-md-8.col-lg-8
-				div.row
-					div.col-12.col-sm-12.col-md-12.col-lg-6.border
-						h3 Here comes an image
-					div.col-12.col-sm-12.col-md-12.col-lg-6.border
-						br
-						br
-						br
-						h1 Sign in
-						h3 Welcome back, captain.
-						form(action="/users/login", method="post" autocomplete="off")
-							div.form-group
-								input.register(name="email" placeholder="email address" class="form-control" required)
-								p= message
-								input.register(name="password" placeholder="password" type="password" class="form-control" required)
-								button.btnRegister.btn.btn-info(type="submit") Take me to the good stuff!
-				div.row
-					div
-						p Not a member yet?
+				div.row.no-gutters.border.roundborders
+					div.col-12.col-sm-12.col-md-12.col-lg-6
+							img.imgRoundborders(src="/images/login-image.jpg" style="width:100%;")
+					div.col-12.col-sm-12.col-md-12.col-lg-6
+						div.login-wrapper
+							br
+							br
+							h1 Sign in
+							h3 Welcome back, captain.
+							form(action="/users/login", method="post" autocomplete="off")
+								div.form-group
+									input.register(name="email" placeholder="email address" class="form-control" required)
+									p= message
+									input.register(name="password" placeholder="password" type="password" class="form-control" required)
+									button.btnRegister.btn.btn-info(type="submit") Take me to the good stuff!
+				div.row.no-gutters
+					div.logChange
+						p 
+							strong Not a member yet?
 							a(href="/users/register")  Sign up.
 
 

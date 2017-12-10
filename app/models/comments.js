@@ -11,12 +11,12 @@ module.exports = ( sequelize, DataTypes ) => {
 		}
 	);
 
-	Comment.createComment = ( contents ) => {
+	Comment.createComment = ( user, post, contents ) => {
 		return Comment.create({
 			content: contents.content,
 			posted: contents.posted,
-			userId: contents.userId,
-			blogpostId: contents, blogpostId
+			userId: user,
+			blogpostId: post
 		})
 	};
 

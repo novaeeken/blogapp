@@ -1,3 +1,80 @@
+/* Green: #8ACA5F, Greys from dark to light: #1E1E1E, #505050, #8D8D8D, #F5F5F5 */
+
+
+* {
+	font-family: 'Montserrat', sans-serif; 
+}
+
+h1 {
+	font-weight: 600;
+	color: #505050;
+}
+
+h2 {
+	font-weight: 600;
+	color: #505050;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: 1.4em;
+	color: #505050;
+}
+
+h4 {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #505050;
+
+}
+
+h5 {
+	font-weight: bold;
+	font-size: 1em;
+	color: #505050;
+}
+
+h6 {
+	font-weight: bold;
+	font-size: 0.8em;
+	color: #505050;
+}
+
+p {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 0.9em;
+	font-weight: 300;
+	color: #505050;
+}
+
+.btn-info {
+	background-color: #8ACA5F;
+	border-color: #8ACA5F;
+	font-weight: bold;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	padding: 10px 10px;
+}
+
+.btn-info:focus,
+.btn-info.focus {
+  	color: #fff;
+	background-color: #77ad53;
+	border-color: #77ad53;
+}
+.btn-info:hover {
+ 	color: #fff;
+	background-color: #77ad53;
+	border-color: #77ad53;
+}
+
+.btn-secondary {
+	font-weight: bold;
+	font-size: 0.7em;
+	text-transform: uppercase;
+	padding: 10px 10px;
+}
+
 #posts {
 	background-color: #e5e5e5;
 }
@@ -11,14 +88,37 @@
 }
 
 #yo {
-	background-color: #bfbfbf;
+	background-color: #e5e5e5;
 }
 
 #bro {
 	background-color: #afafaf;
 }
 
-/*NAV & FOOTER*/
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.roundborders {
+	border-radius: 15px;
+	background-color: #fcfcfc;
+}
+
+.imgRoundborders {
+	border-radius: 15px 0px 0px 15px;
+}
+
+/* ------------------------------------- NAV & FOOTER ------------------------------------- */
+
+.navbar-nav > a {
+	font-weight: bold;
+	font-size: 0.7em;
+	margin-left: 25px;
+}
 
 .footer-wrapper {
 	background-color: #262626;
@@ -35,7 +135,11 @@
 	color: #969696;
 }
 
-/*FORMATTING ON HOME PAGE*/
+.footerFont {
+	color: white;
+}
+
+/* ------------------------------------- FORMATTING ON HOME PAGE ------------------------------------- */
 
 .imgLatest {
 	width: 100%;
@@ -50,6 +154,8 @@
 
 .imgPopular {
 	float: left;
+	width: 20%;
+	border-radius: 10px;
 	margin-right: 10px;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -61,8 +167,16 @@
 	border-radius: 50px;
 }
 
+.icons {
+	width: 12px;
+}
+
 .smallinfo {
-	font-size: 0.8em;
+	font-family: 'Montserrat', sans-serif; 
+	word-spacing: 5px;
+	font-size: 0.7em;
+	font-weight: normal;
+	color: #8D8D8D;
 	line-height: 0.8em;
 }
 
@@ -71,7 +185,9 @@
 	margin-bottom: 10px;
 }
 
-/*FORMATTING ON REGISTER PAGE */
+
+
+/* ------------------------------------- FORMATTING ON REGISTER/LOGIN PAGE ------------------------------------- */
 
 .register {
 	margin-bottom: 10px;
@@ -81,18 +197,38 @@
 	width: 100%;
 }
 
-/*FORMATTING ON PROFILE PAGE */
+.register-wrapper {
+	margin-bottom: -30px;
+	margin-top: 15px;
+	padding: 20px;
+}
+
+.login-wrapper {
+	margin-bottom: -20px;
+	padding: 20px;
+}
+
+.logChange {
+	padding-top: 10px;
+}
+
+/* ------------------------------------- FORMATTING ON PROFILE PAGE ------------------------------------- */
 
 .left-column {
 	text-align: center;
 	align-items: center;
 }
 
-/*profile picture image*/
-.left-column > img {
-	width: 80%;
-	border: 1px solid grey;
+.profile-buttons {
+	float: right;
+
+}
+
+#profilePic {
+	width: 70%;
 	border-radius: 50%;
+	border: 1px solid #8D8D8D;
+
 }
 
 .form-group input {
@@ -100,12 +236,38 @@
 }
 
 
-/*FORMATTING ON SPECIFIC POST PAGE */
+
+/* ------------------------------------- FORMATTING ON SPECIFIC POST PAGE ------------------------------------- */
+
+.titlePostType {
+	font-weight: 800;
+}
+
+.titlePostTitle {
+	font-weight: 400;
+}
+
+.headertag {
+	letter-spacing: 1px;
+	font-weight: 600;
+	color: #8ACA5F;
+	font-size: 0.7em;
+	margin-bottom: 0px;
+	margin-top: 25px;
+}
+
+
+.breadcrum-wrapper {
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
 
 .breadcrum {
-	text-align: right;
-	padding-top: 10px;
-	background-color: #e5e5e5;
+	float: right;
+	font-size: 0.7em;
+	font-weight: 400;
+	text-transform: uppercase;
+	word-spacing: 7px;
 }
 
 .imgRelatedPosts {
@@ -138,7 +300,56 @@
 	width: 70px;
 }
 
-/*SUBSCRIBE OVER IMAGE */
+/*For the like overlay */
+.img-with-overlay {
+	border-radius: 15px;
+	opacity: 1;
+  	display: block;
+	height: auto;
+  	transition: .5s ease;
+  	backface-visibility: hidden;
+}
+
+.overlay-wrapper {
+	border-radius: 15px;
+	background-color: #1E1E1E;
+	width: 100%;
+	position: relative;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.overlay-wrapper:hover .img-with-overlay {
+	opacity: 0.5;
+}
+
+.overlay-wrapper:hover .middle {
+  opacity: 1;
+}
+
+.like-container {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.like-post {
+	cursor: pointer;
+}
+
+.text {
+  color: #F5F5F5;
+  font-weight: 800;
+}
+
+/* ------------------------------------- SUBSCRIBE OVER IMAGE ------------------------------------- */
 
 .subscribeContainer {
 	position: relative;
@@ -152,10 +363,15 @@
 }
 
 .textSubscribe {
+	color: white;
 	padding-right: 15px;
 	position: absolute;
     bottom: 8px;
     left: 16px;
+}
+
+.textSubscribe>p, .textSubscribe>h4  {
+	color: white;
 }
 
 .btnSubscribe {
@@ -175,7 +391,7 @@
 }
 
 
-/*DIFFERENCE BETWEEN LARGE AND NORMAL SCREENS */
+/* ------------------------------------- DIFFERENCE BETWEEN LARGE AND NORMAL SCREENS ------------------------------------- */
 
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
