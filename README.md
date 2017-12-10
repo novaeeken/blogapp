@@ -2,11 +2,11 @@
 
 This project is a result of applying Sequelize, Sessions and RESTful routing in a Node.js Web Application. I developed a fully interactive Food blogging platform connected to a database which allows users to sign up, edit their profile, post, read as well as comment on posts of others.
 
-![banner](https://github.com/novaeeken/Bulletin-Board/blob/master/public/images/screenshot-home.png?raw=true)
+![banner](https://github.com/novaeeken/blogapp/blob/master/public/images/screenshot-home.png?raw=true)
 
 > Screenshot of the homepage featuring the latest posts
 
-![banner](https://github.com/novaeeken/Bulletin-Board/blob/master/public/images/screenshot-signup.png?raw=true)
+![banner](https://github.com/novaeeken/blogapp/blob/master/public/images/screenshot-signup.png?raw=true)
 
 > Screenshot of the register page
 
