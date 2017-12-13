@@ -27,7 +27,8 @@ router.get('/post/:id', function(req, res){
 			author: result[0].user.dataValues, 
 			comments: comments, 
 			total: comments.length,
-			message: req.query.message
+			message: req.query.message,
+			commentMes: req.query.comment
 		});
 	})
 	.catch(e => console.error(e.stack));
@@ -64,9 +65,7 @@ router.post('/newpost', function(req, res){
 
 router.post('/like/:id', function(req, res) {
 	model.Blogpost.addLike(req.params.id);
-	res.redirect(`/posts/post/${req.params.id}?message=` + encodeURIComponent('true'));
-	// this is not working yet
-	console.log('BEEN HERE');
+	res.send({message: "succes!"}); 
 })
 
 module.exports = router;

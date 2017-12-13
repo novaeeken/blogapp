@@ -125,6 +125,53 @@ module.exports = ( sequelize ) => {
 	            })
 	        })
 	    })
+
+        //create obama
+		model.User.createUser({
+			firstname: 'Obama',
+			username: 'obaaams',
+			email: 'obama@gmail.com',
+			password: '123',
+			about: `After working my way through college with the help of scholarships and student loans, I moved to Chicago, where I worked with a group of churches to help rebuild communities devastated by the closure of local steel plants. But, in my spare time (when I'm not busy presedenting) I love to cook!`,
+			profile: '/images/users/4.png'
+		})
+        .then( user => {
+			user.createBlogpost({
+				type: 'Nothing in particular',
+				title: 'A Beginner’s Guide to Once a Week Food Prep',
+				content: `Last week I shared a post talking about prepping all of your food for the week in one afternoon (I also have a whole chapter dedicated to make-ahead meals in my popular ebook) I offered lots of tips, pictures, and gave a step by step on what my food prep day looks like. I received lots of positive feedback on this post. However, within those comments were statements like this: “That looks amazing, I wish I could do that”, “Wow, you are so organized, can you come to my house and do that for me?”, “I would love to food prep but don’t know where to start”, “I tried to prep my food and got so overwhelmed I quit”. These comments, and others like them, made me think. I want you (my reader) to read the posts I write and think to yourself “I can do this”. I do not want you to feel overwhelmed or that it’s too out of reach. BELIEVE ME if you knew me in “real life” you would say “Dang, if Tammy can do it then I can definitely do this”. Not kidding! Some of my closest friends wonder how I even tie my own shoelaces some days. But one of my favorite quotes is “It never gets easier, you only get better”. This is so true. The more I work at something the “easier” it gets. Not because the task itself got easier but because I got better. I evolved. The person I am today with food prep is not the person I was 4 years ago just starting out. If I were to give weekly food prep guidelines to the “just starting out” Tammy this is what they would be… DON'T TRY TO PREP IT AT ALL! First and foremost, when starting out, don’t try and make ahead your entire weekly menu plan. This will completely overwhelm you – it can still overwhelm me. Start slow. The first week prep 1 or 2 recipes ahead of time and as you get comfortable with the process you can prep more. DON'T TRY NEW RECIPES. When starting out with food prep it is best to stick with recipes you already know. This way you are confident in the outcome of the recipe and the only thing you need to focus on is preparing it ahead of time. This is the way I started with my food prep. I took recipes that I made often, like taco meat and red clam sauce, and prepared them ahead of time and then stored in the refrigerator and sometimes freezer. I was able to focus on what worked, what didn’t, and most importantly it allowed me to experience the benefits of having food ready. I know taco meat and clam sauce is easy to make but I still found having these meals made ahead of time to be extremely beneficial. Choose which recipe(s), if made ahead of time, would make the biggest difference in your week. This is huge! If you are short on time or don’t have the energy to prepare a lot of food then prioritize your meals. Which recipe, if made ahead of time, is going to make your week easier? If you are rushing around every morning and always running out of time for a healthy breakfast then maybe focus on preparing breakfast sandwiches or steel cut oats. If dinnertime brings you the most stress then put together some meal starters or prep ingredients for a couple slow cooker recipes. If you are always running to the vending machine at 3:00pm then put together some veggie packs or bags of almonds. What is going to make it easier for you to eat healthier during the week? When I was working out of the house having lunch prepared was huge. If I didn’t I was going to the vending machines or cafeteria for sure. You can view all my mason jar salad recipes here.`,
+				readlength: 3,
+				posted: Date.now(),
+				likes: 1,
+				image: '/images/posts/7.png'
+			})
+
+			return user.createBlogpost({
+				type: '5 Easy ways',
+				title: 'To make a delicious pokébowl',
+				content: `Poke bowls might be unfamiliar to many family tables across the Lower 48, but now is the time to start incorporating these delicious and nutritional recipes into your regular weeknight home cooking. While it can seem intimidating to work with raw fish and ingredients that you’re not fully comfortable with, this is a great cooking skill that once you learn, you’ll never stop using. So take a dive out of your comfort zone for these deliciously authentic poke recipes. If you’d like, think of poke bowls like deconstructed sushi. And just like sushi, this “new” trend is actually an old traditional dish that dates back centuries. In Hawaii, where poke bowls originated, you can find the varieties everywhere from restaurants to supermarkets, and for good reason: They’re delicious, simple, and healthy. Poke is pronounced, poh-keh, and the word means “to cut.” This aggressive verb, however, describes a delicate dish of raw, fresh fish (think: ahi tuna, salmon or shellfish) that are marinated and served cold over rice. The rice and fish are then seasoned with sauces like soy sauce, ponzu sauce, limu (seaweed), rice vinegar, Hawaiian sea salt, creamy and spicy mayo, and salty furikake. All accompanying ingredients are sliced and diced in bite-size portions. In Hawaii, different variations of this dish are not difficult to come by. Take a trip to virtually any grocery store in the Aloha State and you’ll be greeted by a vast selection of the famous sushi-grade fish, like fresh tuna. Take a look through the butcher’s glass and you’ll see hi limu (yellowfin tuna with algae), spicy garlic salmon, tofu with soy sauce, sesame seeds, green onions, kimchee tako (octopus) for sale, and all prepared to top your poke bowls. Because in Hawaii, poke bowls are simple. `,
+				readlength: 3,
+				posted: Date.now(),
+				likes: 8,
+				image: '/images/posts/6.png'
+			})
+			.then( post => {
+				model.Comment.create({
+					content: `Pokebowls are so yummy, I can't get over them. Great hype this is. And so much cheaper than sushi!`,
+					posted: Date.now(),
+					userId: 1,
+					blogpostId: post.id
+				})
+				.then( () => {
+					model.Comment.create({
+						content: `Totally agree, and so easy too! Great post Obama!`,
+						posted: Date.now(),
+						userId: 3,
+						blogpostId: post.id
+					})
+				})
+	        })
+        })
     })
 	.catch(e => console.error(e.stack));
 }

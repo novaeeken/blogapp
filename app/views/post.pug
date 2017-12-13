@@ -12,11 +12,18 @@ block content
 					p.breadcrum Health / #{post.type} / #{post.title}
 
 	div.container
-		if alert === 'true'
-			div#like-alert.alert.alert-success.alert-dismissible.fade.show(role='alert')
-					|  Your like has been submitted!
-					button.close(type='button' data-dismiss='alert' aria-label='Close')
-						span(aria-hidden='true') ×
+		if commentMes
+			//- comment succes box is shown with server request
+			div.alert.alert-success.alert-dismissible.fade.show(role='alert')
+				|  Thanks for your comment! It has been added to this post. 
+				button.close(type='button' data-dismiss='alert' aria-label='Close')
+					span(aria-hidden='true') ×
+		
+		//- like alert box will be shown with jquery
+		div#like-alert.alert.alert-success.alert-dismissible.fade.show(role='alert')
+			|  Your like has been successfully saved!
+			button.close(type='button' data-dismiss='alert' aria-label='Close')
+				span(aria-hidden='true') ×
 		br
 		br
 		div.row
@@ -130,13 +137,16 @@ block content
 	
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
 	script.
+		$('#like-alert').toggle();
 
 		$( document ).ready(function() {
 			$('.like-post').click(function() {
 				let postId = $('.like-post').attr('name');
 			
 				$.post(`/posts/like/${postId}`, function(data) {
-					// do Nothing
+					$('#like-alert').toggle();
+					$('.like-post').toggle();
+					$('.text').html(`<h4 class="text"> You like this</h4>`);
 				})
 			});
 		});

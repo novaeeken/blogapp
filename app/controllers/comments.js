@@ -16,7 +16,7 @@ router.post('/newcomment/:id', function(req, res){
 	}
 		
 	model.Comment.createComment(req.session.user.id, req.params.id, newComment).then( () => {
-		res.redirect(`/posts/post/${req.params.id}`);	
+		res.redirect(`/posts/post/${req.params.id}?comment=` + encodeURIComponent('Comment was added successfully.'));
 	})
 	.catch(e => console.error(e.stack));
 })

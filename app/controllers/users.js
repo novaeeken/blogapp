@@ -17,7 +17,76 @@ router.get('/login', function(req, res) {
 
 // GET PAGE "REGISTER" ----------------------------------
 router.get('/register', function(req, res) {
-	res.render('register', {message: req.query.message}); 
+	res.render('register', {message: req.query.message, pmessage: req.query.pmessage}); 
+});
+
+// POST ACTION "SIGN IN" ----------------------------------
+router.post('/login', function(req, res){
+	
+	//catch values from form fields
+	const password = req.body.password;
+
+	//check if this user exists
+	model.User.userExists(req.body.email)
+	.then( user => {
+		if(user !== null) {
+			// if this emailaddress is known then compare passwords 
+			bcrypt.compare(password, user.password).then( result => {
+				if(result) {
+					req.session.user = user;
+					res.redirect('profile');
+				} else {
+					res.redirect('/users/login?message=' + encodeURIComponent('Password is incorrect')); 
+				}
+			})
+		} else {
+			res.redirect('/users/login?message=' + encodeURIComponent(`Oops, we don't know this emailaddress!`));
+		}
+	})
+	.catch(e => console.error(e.stack));
+});
+
+// POST ACTION "REGISTER" ----------------------------------
+router.post('/register', function(req, res){
+	
+	//Catch all values from form fields into an object
+	const registration = {
+		firstname: req.body.firstname,
+		username: req.body.username,
+		email: req.body.email,
+		password: req.body.password,
+		about: '',
+		profile: '/images/users/example.png'
+	};
+
+	//check wether user already exists
+	model.User.userExists(req.body.email)
+	.then( user => {
+		if(user !== null) {
+			res.redirect('/users/register?message=' + encodeURIComponent("You already have an account on this emailaddress. Please use a different emailaddress or log in."))
+		} else if(req.body.password !== req.body.passwordConfirm) {
+			res.redirect('/users/register?pmessage=' + encodeURIComponent("These passwords don't match."))
+		} else {
+			//if user does not exist, create, login and return new user with hashed password
+			return model.User.createUser(registration).then( user => {
+				return req.session.user = user;
+			})
+			.then( session => {	
+				res.redirect('profile');
+			})
+			.catch(e => console.error(e.stack));
+		}
+	})
+});
+
+// GET ACTION "SIGN OUT" ----------------------------------
+router.get('/logout', function(req, res) {
+	req.session.destroy( (error) => {
+		if(error) {
+			throw error;
+		}
+		res.redirect('/?message=' + encodeURIComponent("Successfully logged out."));
+	}); 
 });
 
 // GET PAGE "PROFILE" ----------------------------------
@@ -63,69 +132,5 @@ router.post('/updateProfilePic', function(req, res) {
 	.catch(e => console.error(e.stack));
 });
 
-
-// POST ACTION "SIGN IN" ----------------------------------
-router.post('/login', function(req, res){
-	
-	//catch values from form fields
-	const password = req.body.password;
-
-	model.User.userExists(req.body.email)
-	.then( user => {
-		if(user !== null) {
-			// if this emailaddress is known then compare passwords 
-			bcrypt.compare(password, user.password).then( result => {
-				if(result) {
-					req.session.user = user;
-					res.redirect('profile');
-				} else {
-					res.redirect('/users/login?message=' + encodeURIComponent('Password is incorrect')); 
-				}
-			})
-		} else {
-			res.redirect('/users/login?message=' + encodeURIComponent(`Oops, we don't know this emailaddress!`));
-		}
-	})
-	.catch(e => console.error(e.stack));
-});
-
-// POST ACTION "REGISTER" ----------------------------------
-router.post('/register', function(req, res){
-	
-	//Catch all values from form fields into an object
-	const registration = {
-		firstname: req.body.firstname,
-		username: req.body.username,
-		email: req.body.email,
-		password: req.body.password,
-		about: '',
-		profile: '/images/users/example.png'
-	};
-
-	//check wether user already exists
-	model.User.userExists(req.body.email)
-	.then( user => {
-		if(user !== null) {
-			res.redirect('users/register?message=' + encodeURIComponent("You already have an account on this emailaddress. Please use a different emailaddress or log in."))
-		} else {
-			//if not, create, login and return new user with hashed password
-			model.User.createUser(registration).then( user => {
-				req.session.user = user;	
-				res.redirect('profile');
-			})
-			.catch(e => console.error(e.stack));
-		}
-	})
-});
-
-// GET ACTION "SIGN OUT" ----------------------------------
-router.get('/logout', function(req, res) {
-	req.session.destroy( (error) => {
-		if(error) {
-			throw error;
-		}
-		res.redirect('/?message=' + encodeURIComponent("Successfully logged out."));
-	}); 
-});
 
 module.exports = router;
